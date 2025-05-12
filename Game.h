@@ -25,7 +25,7 @@ private:
 	Fuel F1;
 	Player player;
 	vector<GameObject*> objs;
-	ofstream file;
+	ofstream saveFile;
 
 public:
 	Game();

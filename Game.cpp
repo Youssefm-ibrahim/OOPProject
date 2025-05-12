@@ -15,7 +15,7 @@ Game::Game():
 	//2 - create and draw the toolbar
 	//createToolbar();
 
-	file.open("save.txt");
+	saveFile.open("save.txt");
 
 	//3 - create and draw the backgroundPlayingArea
 	BG.Draw(*pWind, 3, .7);
@@ -39,28 +39,28 @@ Game::Game():
 	//7- Create and clear the status bar
 	Drawstatusbar(*pWind, 0, 5, 5, 50);
 
-	player.save(file);
+	player.save(saveFile);
 	for (int i = 0; i < En.getTanks().size(); i++)
 	{
-		En.getTanks()[i].save(file);
+		En.getTanks()[i].save(saveFile);
 	}
 	for (int i = 0; i < En.getShips().size(); i++)
 	{
-		En.getShips()[i].save(file);
+		En.getShips()[i].save(saveFile);
 	}
 	for (int i = 0; i < En.getEnemyPlanes().size(); i++)
 	{
-		En.getEnemyPlanes()[i].save(file);
+		En.getEnemyPlanes()[i].save(saveFile);
 	}
 	for (int i = 0; i < En.getEnemyHelicopters().size(); i++)
 	{
-		En.getEnemyHelicopters()[i].save(file);
+		En.getEnemyHelicopters()[i].save(saveFile);
 	}
 	for (int i = 0; i < En.getBridges().size(); i++)
 	{
-		En.getBridges()[i].save(file);
+		En.getBridges()[i].save(saveFile);
 	}
-	file.close();
+	saveFile.close();
 
 	// clearStatusBar();
 	updateobjs();
