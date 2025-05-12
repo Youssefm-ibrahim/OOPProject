@@ -25,6 +25,7 @@ private:
 	Fuel F1;
 	Player player;
 	vector<GameObject*> objs;
+	bool isExit = false;
 	ofstream saveFile;
 
 public:
@@ -49,6 +50,7 @@ public:
 	void DrawGame();
 	void MoveForward(int speed);
 	void updateobjs();
-	void increasescore(int inc) { player.setscore(player.getscore() + inc); }
+	void increasescore(int inc);
+	void exit();
 };
 
