@@ -62,6 +62,8 @@ Game::Game():
 	}
 	saveFile.close();
 
+
+	
 	// clearStatusBar();
 	updateobjs();
 }
@@ -335,6 +337,79 @@ void Game::go()
 			}
 		}
 		pWind->UpdateBuffer();
+
+		pWind->WaitMouseClick(x, y);	//Wait for mouse click
+		if (x < 199 && x>151 && y<56 && y>9)
+		{
+			loadFile.open("save.txt");
+			string line;
+			vector<Tank> tanks;
+			vector<Ship> ships;
+			vector<EnemyPlane> jets;
+			vector<EnemyHelicopter> helis;
+			vector<Bridge> bridges;
+			while (getline(loadFile, line)) {
+				istringstream iss(line);
+				string type;
+				iss >> type;
+				if (type == "player") {
+					int x, y, lives, fuel;
+					iss >> x >> y >> lives >> fuel;
+					player.setx(x);
+					player.sety(y);
+					player.setNumLives(lives);
+					player.setfuel(fuel);
+				}
+				else if (type == "tank") {
+					int x, y, width, height;
+					iss >> x >> y >> width >> height;
+					Tank T(this, { x, y }, width, height);
+					T.set_x(x);
+					T.set_y(y);
+					tanks.push_back(T);
+				}
+				else if (type == "ship") {
+					int x, y, width, height;
+					iss >> x >> y >> width >> height;
+					Ship S(this, { x, y }, width, height);
+					S.set_x(x);
+					S.set_y(y);
+					ships.push_back(S);
+				}
+				else if (type == "enemyPlane") {
+					int x, y, width, height;
+					iss >> x >> y >> width >> height;
+					EnemyPlane E(this, { x, y }, width, height);
+					E.set_x(x);
+					E.set_y(y);
+					jets.push_back(E);
+				}
+				else if (type == "enemyHelicopter") {
+					int x, y, width, height;
+					iss >> x >> y >> width >> height;
+					EnemyHelicopter H(this, { x, y }, width, height);
+					H.set_x(x);
+					H.set_y(y);
+					helis.push_back(H);
+				}
+				else if (type == "bridge") {
+					int x, y, width, height;
+					iss >> x >> y >> width >> height;
+					Bridge B(this, { x, y }, width, height);
+					B.set_x(x);
+					B.set_y(y);
+					bridges.push_back(B);
+
+				}
+			}
+			En.setmanual(tanks, bridges, ships, jets, helis);
+			loadFile.close();
+			cout << En.getBridges().size() << endl;
+			cout << En.getShips().size() << endl;
+			cout << En.getTanks().size() << endl;
+			cout << En.getEnemyPlanes().size() << endl;
+			cout << En.getEnemyHelicopters().size() << endl;
+		}
 		Pause(20);
 
 		//printMessage("Ready...");

@@ -555,8 +555,9 @@ void EnemyManager::deleteenemy(Enemy* E)
 	}
 }
 
-void EnemyManeger::setmanual(vector<Tank>& tanks, vector<Bridge>& bridges, vector<Ship>& ships, vector<EnemyPlane>& jets, vector<EnemyHelicopter>& helis)
+void EnemyManager::setmanual(vector<Tank>& tanks, vector<Bridge>& bridges, vector<Ship>& ships, vector<EnemyPlane>& jets, vector<EnemyHelicopter>& helis)
 {
+	
 	this->tanks = tanks;
 	this->bridges = bridges;
 	this->ships = ships;
@@ -564,7 +565,7 @@ void EnemyManeger::setmanual(vector<Tank>& tanks, vector<Bridge>& bridges, vecto
 	this->helis = helis;
 }
 
-vector<const Enemy*> EnemyManeger::getAllEnemies() const {
+vector<const Enemy*> EnemyManager::getAllEnemies() const {
 	vector<const Enemy* > allEnemies = {};
 
 	for (int i = 0; i < tanks.size(); i++) {
@@ -660,21 +661,21 @@ void EnemyHelicopter::moveVertical() {
 }
 
 void Tank::save(ofstream& file) const {
-	file << "tank " << RefPoint.x << " " << RefPoint.y << "\n";
+	file << "tank " << RefPoint.x << " " << RefPoint.y << " " << width << " " << height << "\n";
 }
 
 void Bridge::save(ofstream& file)  const {
-	file << "bridge " << RefPoint.x << " " << RefPoint.y << "\n";
+	file << "bridge " << RefPoint.x << " " << RefPoint.y << " " << width << " " << height << "\n";
 }
 
 void Ship::save(ofstream& file)  const {
-	file << "ship " << RefPoint.x << " " << RefPoint.y << "\n";
+	file << "ship " << RefPoint.x << " " << RefPoint.y << " " << width << " " << height << "\n";
 }
 
 void EnemyHelicopter::save(ofstream& file)  const {
-	file << "enemyHelicopter " << RefPoint.x << " " << RefPoint.y << "\n";
+	file << "enemyHelicopter " << RefPoint.x << " " << RefPoint.y << " " << width << " " << height << "\n";
 }
 
 void EnemyPlane::save(ofstream& file)  const {
-	file << "enemyPlane " << RefPoint.x << " " << RefPoint.y << "\n";
+	file << "enemyPlane " << RefPoint.x << " " << RefPoint.y << " " << width << " " << height << "\n";
 }
